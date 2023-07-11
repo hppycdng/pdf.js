@@ -546,7 +546,7 @@ const PDFViewerApplication = {
 
     // The browsing history is only enabled when the viewer is standalone,
     // i.e. not when it is embedded in a web page.
-    if (!this.isViewerEmbedded && !AppOptions.get("disableHistory")) {
+    if (!AppOptions.get("disableHistory")) {
       this.pdfHistory = new PDFHistory({
         linkService: pdfLinkService,
         eventBus,
@@ -1403,11 +1403,11 @@ const PDFViewerApplication = {
             spreadMode,
           });
           this.eventBus.dispatch("documentinit", { source: this });
-          // Make all navigation keys work on document load,
-          // unless the viewer is embedded in a web page.
-          if (!this.isViewerEmbedded) {
-            pdfViewer.focus();
-          }
+          // // Make all navigation keys work on document load,
+          // // unless the viewer is embedded in a web page.
+          // if (!this.isViewerEmbedded) {
+          //   pdfViewer.focus();
+          // }
 
           // For documents with different page sizes, once all pages are
           // resolved, ensure that the correct location becomes visible on load.
