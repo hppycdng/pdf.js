@@ -97,13 +97,13 @@ class DefaultExternalServices {
     throw new Error("Cannot initialize DefaultExternalServices.");
   }
 
-  static updateFindControlState(data) {}
+  static updateFindControlState(data) { }
 
-  static updateFindMatchesCount(data) {}
+  static updateFindMatchesCount(data) { }
 
-  static initPassiveLoading(callbacks) {}
+  static initPassiveLoading(callbacks) { }
 
-  static reportTelemetry(data) {}
+  static reportTelemetry(data) { }
 
   static createDownloadManager() {
     throw new Error("Not implemented: createDownloadManager");
@@ -292,7 +292,7 @@ const PDFViewerApplication = {
       if (AppOptions._hasUserOptions()) {
         console.warn(
           "_initializeOptions: The Preferences may override manually set AppOptions; " +
-            'please use the "disablePreferences"-option in order to prevent that.'
+          'please use the "disablePreferences"-option in order to prevent that.'
         );
       }
     }
@@ -497,11 +497,11 @@ const PDFViewerApplication = {
     const annotationEditorMode = AppOptions.get("annotationEditorMode");
     const pageColors =
       AppOptions.get("forcePageColors") ||
-      window.matchMedia("(forced-colors: active)").matches
+        window.matchMedia("(forced-colors: active)").matches
         ? {
-            background: AppOptions.get("pageColorsBackground"),
-            foreground: AppOptions.get("pageColorsForeground"),
-          }
+          background: AppOptions.get("pageColorsBackground"),
+          foreground: AppOptions.get("pageColorsForeground"),
+        }
         : null;
 
     const pdfViewer = new PDFViewer({
@@ -577,7 +577,7 @@ const PDFViewerApplication = {
         this.overlayManager,
         eventBus,
         l10n,
-        /* fileNameLookup = */ () => this._docFilename
+        /* fileNameLookup = */() => this._docFilename
       );
     }
 
@@ -1599,8 +1599,8 @@ const PDFViewerApplication = {
     // Provides some basic debug information
     console.log(
       `PDF ${pdfDocument.fingerprints[0]} [${info.PDFFormatVersion} ` +
-        `${(info.Producer || "-").trim()} / ${(info.Creator || "-").trim()}] ` +
-        `(PDF.js: ${version || "?"} [${build || "?"}])`
+      `${(info.Producer || "-").trim()} / ${(info.Creator || "-").trim()}] ` +
+      `(PDF.js: ${version || "?"} [${build || "?"}])`
     );
     let pdfTitle = info.Title;
 
@@ -2223,7 +2223,7 @@ const PDFViewerApplication = {
     document.blockUnblockOnload?.(false);
 
     // Ensure that this method is only ever run once.
-    this._unblockDocumentLoadEvent = () => {};
+    this._unblockDocumentLoadEvent = () => { };
   },
 
   /**
@@ -2279,13 +2279,14 @@ async function loadFakeWorker() {
 }
 
 async function loadPDFBug(self) {
-  const { debuggerScriptPath } = self.appConfig;
-  const { PDFBug } =
-    typeof PDFJSDev === "undefined"
-      ? await import(debuggerScriptPath) // eslint-disable-line no-unsanitized/method
-      : await __non_webpack_import__(debuggerScriptPath); // eslint-disable-line no-undef
+  throw new Error("has been deactivated");
+  // const { debuggerScriptPath } = self.appConfig;
+  // const { PDFBug } =
+  //   typeof PDFJSDev === "undefined"
+  //     ? await import(debuggerScriptPath) // eslint-disable-line no-unsanitized/method
+  //     : await __non_webpack_import__(debuggerScriptPath); // eslint-disable-line no-undef
 
-  self._PDFBug = PDFBug;
+  // self._PDFBug = PDFBug;
 }
 
 function reportPageStatsPDFBug({ pageNumber }) {
